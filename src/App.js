@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import fire from "./config/config";
@@ -7,9 +6,27 @@ import "firebase/auth";
 
 import Home from "./components/Home";
 import Login from "./components/Login";
-import { render } from '@testing-library/react';
+
+import {BrowserRouter, Route, Switch, Link, Router} from 'react-router-dom';
+import {withRouter} from 'react-router';
 
 
+import Box from '@material-ui/core/Box'
+
+import Cajero from "./components/Cajero";
+import CocinaLista from "./components/CocinaLista";
+import AccesosDirectos from './components/AccesosDirectos';
+import MenuLista from './components/MenuLista';
+import { Button } from '@material-ui/core';
+
+//PAGINAS:
+//    HOME.JS
+//      CLIENTES (PEDIR COMIDA)
+//      IF(EMPLOYEE) == TRUE{
+//        CAJEROS (EDITOR)
+//        COCINERO (TABLE)
+//        REPARTIDORES
+//        }
 export default class App extends Component{
 
   constructor(props){
@@ -43,9 +60,12 @@ export default class App extends Component{
   
   render(){
     return ( 
-      <div className="App">
-        {this.state.user ? (<Home></Home>) : (<Login></Login>) }
+      <div className="App" >
+        {this.state.user ? (<Home userId={this.state.user} ></Home>):(<Login></Login>) }
       </div>
+
+      
+
     );
   }
 
